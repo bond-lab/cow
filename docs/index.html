@@ -38,9 +38,10 @@ cite one (or more) of <a href="#bib">our papers</a>.
 </p><p>All relations (hypernyms, meronyms, ...) come from Princeton
 WordNet 3.0. We have enriched the synsets with Chinese lexical units.
 </p><ul>
-  <li> 42,315 synsets
-  </li><li> 79,812 senses
-  </li><li> 61,536 unique words
+  <li> 47,124 synsets
+  </li><li> 109,045 senses
+  </li><li> 85,147 unique words (84,790 with pinyin)
+  </li><li> 6,534 Chinese definitions
 </li></ul>
 
 <p>Disclaimer: This release has limited coverage and almost certainly
@@ -52,6 +53,15 @@ still contains errors. We  welcome
 <p>Note that the version on the server has newer editions that may not be in the downloadable version yet.
 
 <ul>
+  <li> 2026-10-23: <strong>COW 1.0</strong>, the curated Chinese wordnet from the
+       <a href="https://github.com/bond-lab/NTUMC">NTU-MC</a>, with about 6,000 new
+       definitions and a review of lemmas by Jia Qi Yeo
+    <ul>
+      <li> <a href="https://github.com/bond-lab/cow/releases/download/v1.0/cow-1.0.tar.xz">cow-1.0.tar.xz</a>
+           (WN-LMF 1.4 package for the <a href="https://github.com/goodmami/wn"><code>wn</code></a> module;
+           requires <code>omw-en:2.0</code>)
+      <li> <code>wn.download("https://github.com/bond-lab/cow/releases/download/v1.0/cow-1.0.tar.xz")</code>
+   </li></ul>
   <li> 2014-01-23 (initial public beta release)
     <ul>
       <li> <a href="data/0.9/wn-data-cmn.tab">list of synset-lemma pairs</a> (tab separated)
