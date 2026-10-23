@@ -10,7 +10,7 @@ Web page: <https://bond-lab.github.io/cow/>
 
 | | |
 |---|---|
-| Synsets | 47,124 (46,757 with Chinese words) |
+| Synsets | 47,124 (46,757 with Chinese words; 2,028 new) |
 | Words (lexical entries) | 85,147 (84,790 with pinyin) |
 | Senses | 109,045 |
 | Chinese definitions | 6,534 |
@@ -27,6 +27,10 @@ Senses that come only from automatically linked resources (BOW, SEW,
 Wiktionary) and segmented variants (购物 中心) are left out; the full,
 unfiltered data is in the NTU-MC database and its `ntumc-cmn` export.
 Pinyin is added from CC-CEDICT.
+
+The synsets and relations are based on Princeton WordNet 3.0.  COW also
+adds 2,028 synsets of its own (concepts lexicalised in Chinese, *chengyu*,
+classifiers and pronouns), linked into the hierarchy by 4,796 relations.
 
 The wordnet is in WN-LMF 1.4 format and extends the English
 `omw-en:2.0` wordnet: it declares `<Requires ref="omw-en" version="2.0"/>`
