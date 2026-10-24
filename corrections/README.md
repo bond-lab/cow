@@ -10,7 +10,7 @@ reapplied on every rebuild.
 Tab-separated, UTF-8, with a header row:
 
 ```
-synset_id	lemma	action	confidence	reason	source	date
+synset_id	lemma	action	confidence	reason	source	date	new_lemma
 ```
 
 A sense is named by its COW synset ID (e.g. `cow-00001740-a`) and the
@@ -61,6 +61,15 @@ senses, although the NTU-MC wordnet had 1,313 candidate lemmas for them from
 those sources.  Two blind Opus runs and an adjudicator judged them; the
 1,078 judged right and not malformed are `add` rows (source `rescue: ...`),
 filling 380 of the 395 synsets.
+
+### 2026-10-24: mechanical form fixes
+
+143 `rename` rows with source `form: mechanical`, made by NTU-MC's
+`scripts/form_fixes.py` for lemmas the review did not flag: 80 with spaces
+between Han characters (游戏 规则 → 游戏规则), 48 with traditional
+characters (開齋節 → 开斋节; a character whose simplified form is outside
+the basic CJK block, such as 鰤 → 𫚕, is kept), and 15 with full-width
+digits or letters (４月 → 4月, 卡拉ＯＫ → 卡拉OK).
 
 The reviews, reasons and scripts are in the NTU-MC repository
 (`scripts/triage_review.py`, `scripts/cow_rescue.py`; the run files are in

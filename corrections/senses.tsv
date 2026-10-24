@@ -32,7 +32,7 @@ cow-00011011-r	刚刚	add		rescued from excluded sources	rescue: 2 blind opus	20
 cow-00011011-r	才	add		rescued from excluded sources	rescue: 2 blind opus	2026-10-24	
 cow-00011011-r	最近	add		rescued from excluded sources	rescue: 2 blind opus	2026-10-24	
 cow-00012531-r	动辄	remove		Not a word (should be 有罪地)	triage: haiku + 2 blind opus	2026-10-24	
-cow-00014858-a	卷数多	add		rescued from excluded sources: literally \\\"many volumes\\\"; voluminous	rescue: 2 blind opus	2026-10-24	
+cow-00014858-a	卷数多	add		rescued from excluded sources: literally "many volumes"; voluminous	rescue: 2 blind opus	2026-10-24	
 cow-00014858-a	大量	add		rescued from excluded sources	rescue: 2 blind opus	2026-10-24	
 cow-00014858-a	大量+的	add		rescued from excluded sources	rescue: 2 blind opus	2026-10-24	
 cow-00014858-a	很多	add		rescued from excluded sources	rescue: 2 blind opus	2026-10-24	
@@ -1010,7 +1010,7 @@ cow-00787595-a	强制	remove		compulsory, not bossy	triage: haiku + 2 blind opus
 cow-00788032-a	吵闹的	remove		merely noisy, lacks domineering/bullying	triage: haiku + 2 blind opus (adjudicated)	2026-10-24	
 cow-00789494-a	缺乏勇气和胆量	remove		malformed or not a word	triage: haiku + 2 blind opus + form note	2026-10-24	
 cow-00790691-a	奉承	remove		flatter, not slavish/submissive	triage: haiku + 2 blind opus	2026-10-24	
-cow-00792769-a	优于	remove		better than, not \\\\\\\"not subject to\\\\\\\"	triage: haiku + 2 blind opus	2026-10-24	
+cow-00792769-a	优于	remove		better than, not "not subject to"	triage: haiku + 2 blind opus	2026-10-24	
 cow-00792769-a	优于的	remove		优于 means better than, not not-subject-to	triage: haiku + 2 blind opus	2026-10-24	
 cow-00792921-v	呼叫停止追捕	remove		malformed or not a word: descriptive paraphrase of calling off the hunt	triage: haiku + 2 blind opus + form note	2026-10-24	
 cow-00794123-n	潜伏期的试验	remove		'incubation-period test', not a preclinical trial	triage: haiku + 2 blind opus	2026-10-24	
@@ -4571,7 +4571,7 @@ cow-07970406-n	家庭	add		rescued from excluded sources	rescue: 2 blind opus	20
 cow-07985628-n	一双	remove		一双 is a pair of objects, not an associated couple	triage: haiku + 2 blind opus (adjudicated)	2026-10-24	
 cow-07990377-n	结合体	remove		generic combination, not ecological association	triage: haiku + 2 blind opus	2026-10-24	
 cow-07994941-n	一群狩猎的动物	remove		malformed or not a word: pack of hunting animals	triage: haiku + 2 blind opus + form note	2026-10-24	
-cow-07994941-n	一群野兽	add		rescued from excluded sources: phrase \\\"a group of beasts\\\"	rescue: 2 blind opus	2026-10-24	
+cow-07994941-n	一群野兽	add		rescued from excluded sources: phrase "a group of beasts"	rescue: 2 blind opus	2026-10-24	
 cow-07994941-n	群	add		rescued from excluded sources: broader	rescue: 2 blind opus	2026-10-24	
 cow-07996689-n	一 套	rename		fixed form	triage: haiku + 2 blind opus + form note	2026-10-24	一套
 cow-08008017-n	打包	remove		verb 'to pack', not the noun package	triage: haiku + 2 blind opus	2026-10-24	
@@ -6491,7 +6491,7 @@ cow-80002081-a	乌	lower	0.5	unclear dialect sense for soy-braised food	triage: 
 cow-80002081-a	黑色	remove		'black colour', not food cooked with soy sauce	triage: haiku + 2 blind opus	2026-10-24	
 cow-80002254-v	在锁	remove		typo for 再锁; 在锁 is not 'relock'	triage: haiku + 2 blind opus (adjudicated)	2026-10-24	
 cow-80002255-v	在锁	remove		malformed or not a word: typo for 再锁	triage: haiku + 2 blind opus + form note	2026-10-24	
-cow-80002256-v	在锁	remove		typo for 再锁; 在锁 means \\\\\\\"is locked\\\\\\\"	triage: haiku + 2 blind opus	2026-10-24	
+cow-80002256-v	在锁	remove		typo for 再锁; 在锁 means "is locked"	triage: haiku + 2 blind opus	2026-10-24	
 cow-80002382-a	一 口 大 小	rename		fixed form	triage: haiku + 2 blind opus + form note	2026-10-24	一口大小
 cow-80002382-a	一口香	remove		snack name, not bite-sized	triage: haiku + 2 blind opus (adjudicated)	2026-10-24	
 cow-80002383-a	跨 文化	remove		variant of 跨文化, which the synset has	triage: haiku + 2 blind opus + form note	2026-10-24	
@@ -6525,3 +6525,146 @@ cow-90000463-n	陶制土	remove		not a word for stoneware	triage: haiku + 2 blin
 cow-90000500-n	明晚	remove		tomorrow night, not year before last	triage: haiku + 2 blind opus	2026-10-24	
 cow-90000540-n	六日	lower	0.5	no concept information	triage: haiku + 2 blind opus (adjudicated)	2026-10-24	
 cow-90000602-n	桥南 路	remove		variant of 桥南路, which the synset has	triage: haiku + 2 blind opus + form note	2026-10-24	
+cow-00031663-v	格格 笑	rename		spaces between Han characters	form: mechanical	2026-10-24	格格笑
+cow-00064189-r	一味 地	rename		spaces between Han characters	form: mechanical	2026-10-24	一味地
+cow-00076193-r	来来 回回	rename		spaces between Han characters	form: mechanical	2026-10-24	来来回回
+cow-00155621-r	一般 来说	rename		spaces between Han characters	form: mechanical	2026-10-24	一般来说
+cow-00262076-v	更新 换代	rename		spaces between Han characters	form: mechanical	2026-10-24	更新换代
+cow-00289392-v	变 斑白	rename		spaces between Han characters	form: mechanical	2026-10-24	变斑白
+cow-00397576-v	分化 瓦解	rename		spaces between Han characters	form: mechanical	2026-10-24	分化瓦解
+cow-00439257-r	猛烈 地	rename		spaces between Han characters	form: mechanical	2026-10-24	猛烈地
+cow-00588888-v	瞭解	rename		traditional characters	form: mechanical	2026-10-24	了解
+cow-00621058-v	使 明确化	rename		spaces between Han characters	form: mechanical	2026-10-24	使明确化
+cow-00633864-n	调查 工作	rename		spaces between Han characters	form: mechanical	2026-10-24	调查工作
+cow-00672382-a	量身 订做	rename		spaces between Han characters	form: mechanical	2026-10-24	量身订做
+cow-00779908-v	休息 一下	rename		spaces between Han characters	form: mechanical	2026-10-24	休息一下
+cow-00815686-v	答覆	rename		traditional characters	form: mechanical	2026-10-24	答复
+cow-00921014-a	劲 爆 热 辣	rename		spaces between Han characters	form: mechanical	2026-10-24	劲爆热辣
+cow-01104460-a	其中 一 个	rename		spaces between Han characters	form: mechanical	2026-10-24	其中一个
+cow-01247426-v	扳起 击铁	rename		spaces between Han characters	form: mechanical	2026-10-24	扳起击铁
+cow-01255302-n	卡拉ＯＫ	rename		full-width characters	form: mechanical	2026-10-24	卡拉OK
+cow-01450178-a	下落 不明	rename		spaces between Han characters	form: mechanical	2026-10-24	下落不明
+cow-01497736-a	无 意义的	rename		spaces between Han characters	form: mechanical	2026-10-24	无意义的
+cow-01788445-a	带有 斑点的	rename		spaces between Han characters	form: mechanical	2026-10-24	带有斑点的
+cow-01868724-a	专业性 的	rename		spaces between Han characters	form: mechanical	2026-10-24	专业性的
+cow-01898722-a	有 见地	rename		spaces between Han characters	form: mechanical	2026-10-24	有见地
+cow-01898722-a	有 见地的	rename		spaces between Han characters	form: mechanical	2026-10-24	有见地的
+cow-01960787-n	幼蠔	rename		traditional characters	form: mechanical	2026-10-24	幼蚝
+cow-02054834-n	鸏鸟科	rename		traditional characters	form: mechanical	2026-10-24	鹲鸟科
+cow-02054966-n	鸏鸟属	rename		traditional characters	form: mechanical	2026-10-24	鹲鸟属
+cow-02059541-n	白額鸌	rename		traditional characters	form: mechanical	2026-10-24	白额鹱
+cow-02150569-a	Ｔ形	rename		full-width characters	form: mechanical	2026-10-24	T形
+cow-02150569-a	Ｔ形的	rename		full-width characters	form: mechanical	2026-10-24	T形的
+cow-02202307-a	第３	rename		full-width characters	form: mechanical	2026-10-24	第3
+cow-02205271-a	第２５	rename		full-width characters	form: mechanical	2026-10-24	第25
+cow-02446512-n	獾臭鼬屬	rename		traditional characters	form: mechanical	2026-10-24	獾臭鼬属
+cow-02518488-n	电鮎属	rename		traditional characters	form: mechanical	2026-10-24	电鲇属
+cow-02521472-n	鱈形目	rename		traditional characters	form: mechanical	2026-10-24	鳕形目
+cow-02525447-v	发挥 作用	rename		spaces between Han characters	form: mechanical	2026-10-24	发挥作用
+cow-02539788-v	带 大	rename		spaces between Han characters	form: mechanical	2026-10-24	带大
+cow-02540412-n	胡瓜魚	rename		traditional characters	form: mechanical	2026-10-24	胡瓜鱼
+cow-02540637-n	胡瓜魚属	rename		traditional characters	form: mechanical	2026-10-24	胡瓜鱼属
+cow-02554940-a	禁止制造 或出售酒	rename		spaces between Han characters	form: mechanical	2026-10-24	禁止制造或出售酒
+cow-02566227-v	出 娄子	rename		spaces between Han characters	form: mechanical	2026-10-24	出娄子
+cow-02577532-n	鳞魨属	rename		traditional characters	form: mechanical	2026-10-24	鳞鲀属
+cow-02577662-n	鳞魨	rename		traditional characters	form: mechanical	2026-10-24	鳞鲀
+cow-02634858-n	方尾鱒	rename		traditional characters	form: mechanical	2026-10-24	方尾鳟
+cow-02643713-n	毒鮋属	rename		traditional characters	form: mechanical	2026-10-24	毒鲉属
+cow-02644817-n	平鮋	rename		traditional characters	form: mechanical	2026-10-24	平鲉
+cow-02644817-n	鲈鮋	rename		traditional characters	form: mechanical	2026-10-24	鲈鲉
+cow-02649400-n	鯒科	rename		traditional characters	form: mechanical	2026-10-24	鲬科
+cow-02652335-n	魨形目	rename		traditional characters	form: mechanical	2026-10-24	鲀形目
+cow-02653145-n	鳞魨	rename		traditional characters	form: mechanical	2026-10-24	鳞鲀
+cow-02654112-n	鳞魨	rename		traditional characters	form: mechanical	2026-10-24	鳞鲀
+cow-02654256-n	箱魨科	rename		traditional characters	form: mechanical	2026-10-24	箱鲀科
+cow-02654425-n	箱魨	rename		traditional characters	form: mechanical	2026-10-24	箱鲀
+cow-02654609-n	箱魨属	rename		traditional characters	form: mechanical	2026-10-24	箱鲀属
+cow-02654745-n	角箱魨	rename		traditional characters	form: mechanical	2026-10-24	角箱鲀
+cow-02661765-n	腹肢鮃属	rename		traditional characters	form: mechanical	2026-10-24	腹肢鲆属
+cow-02661892-n	灰腹肢鮃	rename		traditional characters	form: mechanical	2026-10-24	灰腹肢鲆
+cow-02662081-n	副棘鮃属	rename		traditional characters	form: mechanical	2026-10-24	副棘鲆属
+cow-02662239-n	副棘鮃	rename		traditional characters	form: mechanical	2026-10-24	副棘鲆
+cow-02662397-n	角副棘鮃	rename		traditional characters	form: mechanical	2026-10-24	角副棘鲆
+cow-02662825-n	美洲菱鮃	rename		traditional characters	form: mechanical	2026-10-24	美洲菱鲆
+cow-02664823-n	鰜鲽属	rename		traditional characters	form: mechanical	2026-10-24	鳒鲽属
+cow-02779163-a	蹠面	rename		traditional characters	form: mechanical	2026-10-24	跖面
+cow-02779163-a	蹠面的	rename		traditional characters	form: mechanical	2026-10-24	跖面的
+cow-03070193-n	大型 强子 对撞机	rename		spaces between Han characters	form: mechanical	2026-10-24	大型强子对撞机
+cow-03162714-n	缝合摺	rename		traditional characters	form: mechanical	2026-10-24	缝合折
+cow-03365374-n	泛光 照明	rename		spaces between Han characters	form: mechanical	2026-10-24	泛光照明
+cow-03618219-n	老Ｋ	rename		full-width characters	form: mechanical	2026-10-24	老K
+cow-04388473-n	坦 都 烤炉	rename		spaces between Han characters	form: mechanical	2026-10-24	坦都烤炉
+cow-06355307-n	秘密 文字	rename		spaces between Han characters	form: mechanical	2026-10-24	秘密文字
+cow-06628861-n	致謝	rename		traditional characters	form: mechanical	2026-10-24	致谢
+cow-06632671-n	早上 好	rename		spaces between Han characters	form: mechanical	2026-10-24	早上好
+cow-06788897-n	游戏 规则	rename		spaces between Han characters	form: mechanical	2026-10-24	游戏规则
+cow-06905358-n	克利奥尔 语	rename		spaces between Han characters	form: mechanical	2026-10-24	克利奥尔语
+cow-06930804-n	客家 话	rename		spaces between Han characters	form: mechanical	2026-10-24	客家话
+cow-07381864-n	吱嘎 声	rename		spaces between Han characters	form: mechanical	2026-10-24	吱嘎声
+cow-07783827-n	鯷鱼酱	rename		traditional characters	form: mechanical	2026-10-24	鳀鱼酱
+cow-07985223-n	一 双	rename		spaces between Han characters	form: mechanical	2026-10-24	一双
+cow-08296332-n	联合国 安理会	rename		spaces between Han characters	form: mechanical	2026-10-24	联合国安理会
+cow-08517966-n	德士 站	rename		spaces between Han characters	form: mechanical	2026-10-24	德士站
+cow-08551177-n	受灾 地	rename		spaces between Han characters	form: mechanical	2026-10-24	受灾地
+cow-09906704-n	冠军 保持者	rename		spaces between Han characters	form: mechanical	2026-10-24	冠军保持者
+cow-10059582-n	衷情 者	rename		spaces between Han characters	form: mechanical	2026-10-24	衷情者
+cow-11311173-n	斯蒂芬 斯皮尔伯格	rename		spaces between Han characters	form: mechanical	2026-10-24	斯蒂芬斯皮尔伯格
+cow-11311173-n	斯蒂芬 艾伦 斯皮尔伯格	rename		spaces between Han characters	form: mechanical	2026-10-24	斯蒂芬艾伦斯皮尔伯格
+cow-12327528-n	鯷梨	rename		traditional characters	form: mechanical	2026-10-24	鳀梨
+cow-12953079-n	紫萁 属	rename		spaces between Han characters	form: mechanical	2026-10-24	紫萁属
+cow-13019496-n	绯红色摺菌	rename		traditional characters	form: mechanical	2026-10-24	绯红色折菌
+cow-13203551-n	墊囊蕨科	rename		traditional characters	form: mechanical	2026-10-24	垫囊蕨科
+cow-13743269-n	２	rename		full-width characters	form: mechanical	2026-10-24	2
+cow-13749894-n	７０	rename		full-width characters	form: mechanical	2026-10-24	70
+cow-13849710-n	第１００	rename		full-width characters	form: mechanical	2026-10-24	第100
+cow-14718099-n	白鑞	rename		traditional characters	form: mechanical	2026-10-24	白镴
+cow-14812566-n	菸纸	rename		traditional characters	form: mechanical	2026-10-24	烟纸
+cow-14890286-n	花岗岩 石	rename		spaces between Han characters	form: mechanical	2026-10-24	花岗岩石
+cow-15210486-n	２月	rename		full-width characters	form: mechanical	2026-10-24	2月
+cow-15210486-n	２月份	rename		full-width characters	form: mechanical	2026-10-24	2月份
+cow-15211189-n	４月	rename		full-width characters	form: mechanical	2026-10-24	4月
+cow-15212739-n	９月份	rename		full-width characters	form: mechanical	2026-10-24	9月份
+cow-15213115-n	１０月	rename		full-width characters	form: mechanical	2026-10-24	10月
+cow-15213774-n	１２月	rename		full-width characters	form: mechanical	2026-10-24	12月
+cow-15276427-n	出生 数	rename		spaces between Han characters	form: mechanical	2026-10-24	出生数
+cow-15295603-n	摄政 时期	rename		spaces between Han characters	form: mechanical	2026-10-24	摄政时期
+cow-80000009-n	副 队长	rename		spaces between Han characters	form: mechanical	2026-10-24	副队长
+cow-80000028-n	国泰 航空	rename		spaces between Han characters	form: mechanical	2026-10-24	国泰航空
+cow-80000113-n	汤姆森 路	rename		spaces between Han characters	form: mechanical	2026-10-24	汤姆森路
+cow-80000131-n	香 米	rename		spaces between Han characters	form: mechanical	2026-10-24	香米
+cow-80000152-n	中峇鲁 卤面	rename		spaces between Han characters	form: mechanical	2026-10-24	中峇鲁卤面
+cow-80000211-n	埃里克斯蒂芬 雷蒙	rename		spaces between Han characters	form: mechanical	2026-10-24	埃里克斯蒂芬雷蒙
+cow-80000214-n	莱佛士 书院	rename		spaces between Han characters	form: mechanical	2026-10-24	莱佛士书院
+cow-80000238-n	总统 密特朗	rename		spaces between Han characters	form: mechanical	2026-10-24	总统密特朗
+cow-80000268-n	日本 通产省	rename		spaces between Han characters	form: mechanical	2026-10-24	日本通产省
+cow-80000270-n	时装 表演	rename		spaces between Han characters	form: mechanical	2026-10-24	时装表演
+cow-80000271-a	可 遇 不 可求	rename		spaces between Han characters	form: mechanical	2026-10-24	可遇不可求
+cow-80000301-n	麻糰	rename		traditional characters	form: mechanical	2026-10-24	麻团
+cow-80000322-n	摆 盘	rename		spaces between Han characters	form: mechanical	2026-10-24	摆盘
+cow-80000377-n	聚 舞 坊	rename		spaces between Han characters	form: mechanical	2026-10-24	聚舞坊
+cow-80000409-n	献血 活动	rename		spaces between Han characters	form: mechanical	2026-10-24	献血活动
+cow-80000584-n	玛萨拉 鸡柳	rename		spaces between Han characters	form: mechanical	2026-10-24	玛萨拉鸡柳
+cow-80000706-n	单 马车	rename		spaces between Han characters	form: mechanical	2026-10-24	单马车
+cow-80000756-n	罗弄 真查鲁	rename		spaces between Han characters	form: mechanical	2026-10-24	罗弄真查鲁
+cow-80001010-n	亚三 叻沙	rename		spaces between Han characters	form: mechanical	2026-10-24	亚三叻沙
+cow-80001081-v	更 上 一 层 楼	rename		spaces between Han characters	form: mechanical	2026-10-24	更上一层楼
+cow-80001115-n	潮州 话	rename		spaces between Han characters	form: mechanical	2026-10-24	潮州话
+cow-80001123-n	一 臂 之 力	rename		spaces between Han characters	form: mechanical	2026-10-24	一臂之力
+cow-80001151-a	游人 如织	rename		spaces between Han characters	form: mechanical	2026-10-24	游人如织
+cow-80001222-n	独生 的 男孩	rename		spaces between Han characters	form: mechanical	2026-10-24	独生的男孩
+cow-80001241-v	用绳 套住	rename		spaces between Han characters	form: mechanical	2026-10-24	用绳套住
+cow-80001305-n	巴东 人	rename		spaces between Han characters	form: mechanical	2026-10-24	巴东人
+cow-80001373-n	土豆 肉饼	rename		spaces between Han characters	form: mechanical	2026-10-24	土豆肉饼
+cow-80001538-v	自我介紹	rename		traditional characters	form: mechanical	2026-10-24	自我介绍
+cow-80001541-n	储值 卡	rename		spaces between Han characters	form: mechanical	2026-10-24	储值卡
+cow-80001609-n	助辭	rename		traditional characters	form: mechanical	2026-10-24	助辞
+cow-80001718-n	粵劇	rename		traditional characters	form: mechanical	2026-10-24	粤剧
+cow-80001829-n	亞馬遜雨林	rename		traditional characters	form: mechanical	2026-10-24	亚马逊雨林
+cow-80001993-r	随 的	rename		spaces between Han characters	form: mechanical	2026-10-24	随的
+cow-90000032-n	鱼头 咖喱	rename		spaces between Han characters	form: mechanical	2026-10-24	鱼头咖喱
+cow-90000033-n	美食 中心	rename		spaces between Han characters	form: mechanical	2026-10-24	美食中心
+cow-90000057-n	佛牙寺 龙华院 与 博物馆	rename		spaces between Han characters	form: mechanical	2026-10-24	佛牙寺龙华院与博物馆
+cow-90000211-n	鲁玛 比比	rename		spaces between Han characters	form: mechanical	2026-10-24	鲁玛比比
+cow-90000211-n	鲁玛比比 精品店	rename		spaces between Han characters	form: mechanical	2026-10-24	鲁玛比比精品店
+cow-90000328-n	開齋節	rename		traditional characters	form: mechanical	2026-10-24	开斋节
+cow-90000421-n	当地 居民	rename		spaces between Han characters	form: mechanical	2026-10-24	当地居民
