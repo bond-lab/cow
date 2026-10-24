@@ -55,7 +55,9 @@ cow.words("狗")
 
 Shan Wang and Francis Bond built COW (2013–2014).  Francis Bond and
 Luís Morgado da Costa extended it (2015–2022), with the annotators of
-the NTU-MC.  Jia Qi Yeo added definitions and reviewed lemmas (2020).
+the NTU-MC.  Gao Huini Eshley, Hazel Mok Shu Wen and Jeanette Yiwen
+Tan also contributed.  Jia Qi Yeo added definitions and reviewed
+lemmas (2020).
 
 ## License
 
@@ -66,4 +68,8 @@ A WordNet-style permissive license: see [LICENSE](docs/LICENSE).
 Shan Wang and Francis Bond (2013). Building the Chinese Open Wordnet
 (COW): Starting from Core Synsets. In *Proceedings of the 11th Workshop
 on Asian Language Resources (ALR-11), IJCNLP 2013*, pp 10–18. Nagoya.
-See [citation.bib](data/citation.bib).
+See [citation.bib](data/citation.bib), which also has the papers on
+the sense-tagged corpora COW was extended from (Bond et al. 2013;
+Wang and Bond 2014; Bond and Wang 2014), numeral classifiers (Mok et
+al. 2012; Morgado da Costa et al. 2016), pronouns (Seah and Bond 2014)
+and exclamatives (Morgado da Costa and Bond 2016).
