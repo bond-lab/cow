@@ -55,6 +55,21 @@ cow = wn.Wordnet("cow:1.1")
 cow.words("狗")
 ```
 
+## Building
+
+COW is built from the curated Chinese export of the NTU-MC database.  The
+export used for 1.1 is `wn-ntumc-cmn.xml.xz` in the NTU-MC release
+[wn-2026.10](https://github.com/bond-lab/NTUMC/releases/tag/wn-2026.10)
+(checksums in its `SHA256SUMS`):
+
+    xz -d wn-ntumc-cmn.xml.xz
+    scripts/build_cow.py wn-ntumc-cmn.xml --version 1.1 --cedict CEDICT
+
+`build_cow.py` applies `corrections/senses.tsv` and writes
+`release/cow-1.1.xml` and `release/cow-1.1.tar.xz`.  `--cedict` gives
+entries new in the corrections their pinyin with NTU-MC's `addpinyin.py`,
+so it needs an NTU-MC checkout next to this one (`--ntumc`).
+
 ## History
 
 * 1.1 (2026-10): reviewed senses (LLM review, see `corrections/`); examples
