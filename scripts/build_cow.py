@@ -179,7 +179,8 @@ def add_senses(lex: dict, rows: list[dict], by_lemma: dict) -> int:
 def package(xml: Path, outdir: Path, version: str) -> Path:
     """Write the wn package directory and its .tar.xz; return the tarball."""
     pkg = outdir / WN_ID
-    pkg.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(pkg, ignore_errors=True)  # a package holds exactly one XML
+    pkg.mkdir(parents=True)
     shutil.copy(xml, pkg / f"{WN_ID}-{version}.xml")
     shutil.copy(ROOT / "docs" / "LICENSE", pkg / "LICENSE")
     shutil.copy(ROOT / "README.md", pkg / "README.md")

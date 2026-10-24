@@ -6,16 +6,25 @@ Interlingual Index (CILI).
 
 Web page: <https://bond-lab.github.io/cow/>
 
-## Version 1.0 (2026-10)
+## Version 1.1 (2026-10)
 
 | | |
 |---|---|
-| Synsets | 47,124 (46,757 with Chinese words; 2,028 new) |
-| Words (lexical entries) | 85,147 (84,790 with pinyin) |
-| Senses | 109,045 |
+| Synsets | 46,189 (46,147 with Chinese words) |
+| Words (lexical entries) | 82,660 (82,404 with pinyin) |
+| Senses | 105,175 |
 | Chinese definitions | 6,534 |
+| Chinese examples | 614 |
 
-COW 1.0 is the curated Chinese wordnet maintained in the
+COW 1.1 removes 4,948 senses found wrong or malformed in a review of
+every COW 1.0 sense (Claude Haiku flagged suspects, two blind Claude Opus
+runs judged them, an Opus adjudicator decided disagreements), lowers the
+confidence of 120 undecided ones, fixes the form of 539 lemmas (spaces,
+traditional or full-width characters), adds back 1,078 checked senses
+from the excluded automatic sources for synsets left with none, and adds
+examples.  See `corrections/README.md`.
+
+COW is the curated Chinese wordnet maintained in the
 [NTU Multilingual Corpus](https://github.com/bond-lab/NTUMC) (NTU-MC)
 database.  It contains COW 0.9 (2014) and the senses, words and
 definitions added and checked since then while sense-tagging the
@@ -41,13 +50,14 @@ and leaves out structure shared with it.
 ```python
 import wn
 wn.download("omw-en:2.0")
-wn.download("https://github.com/bond-lab/cow/releases/download/v1.0/cow-1.0.tar.xz")
-cow = wn.Wordnet("cow:1.0")
+wn.download("https://github.com/bond-lab/cow/releases/download/v1.1/cow-1.1.tar.xz")
+cow = wn.Wordnet("cow:1.1")
 cow.words("狗")
 ```
 
 ## History
 
+* 1.1 (2026-10): reviewed senses (LLM review, see `corrections/`); examples
 * 1.0 (2026-10): first release in WN-LMF; built from the NTU-MC database
 * 0.9 (2014-01-23): initial public beta (in `docs/data/0.9/`)
 
