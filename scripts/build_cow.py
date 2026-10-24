@@ -11,8 +11,9 @@ segmented variants (cmn:mwe):
         --ili build/ili-map-pwn30.tab --base omw-en:2.0
     .venv/bin/python scripts/addpinyin.py CEDICT OUT/wn-ntumc-cmn.xml --db ...
 
-This re-ids the lexicon from ntumc-cmn to cow, sets the COW metadata and
-writes a wn package (cow/cow-VERSION.xml with README, LICENSE and
+This re-ids the lexicon from ntumc-cmn to cow, sets the COW metadata,
+applies the sense corrections in corrections/senses.tsv, adds pinyin to new
+entries with NTU-MC's addpinyin.py (with --cedict) and writes a wn package (cow/cow-VERSION.xml with README, LICENSE and
 citation.bib) and its .tar.xz.
 
 Usage:
@@ -20,7 +21,9 @@ Usage:
 """
 
 import argparse
+import csv
 import shutil
+import subprocess
 import tarfile
 from pathlib import Path
 
@@ -61,6 +64,118 @@ def reprefix(lex: dict, old: str, new: str) -> None:
             sense["synset"] = fix(sense["synset"])
 
 
+def apply_sense_corrections(lex: dict, tsv: Path) -> tuple[int, int, int]:
+    """Apply corrections/senses.tsv to a lexicon.
+
+    Each row names a sense by synset_id and lemma (written form).  Action
+    ``remove`` deletes the sense (and the entry if it is left with none);
+    ``lower`` sets its confidenceScore to the given value unless already
+    lower; ``rename`` moves the sense to the entry for ``new_lemma`` (same
+    part of speech), creating it with the old entry's pronunciations if
+    needed, or drops it if that entry already has the synset; ``add``
+    creates the sense (a lemma ending in +的/+地 loses the + and is marked
+    non-lexicalized, as addpinyin.py does), copying pronunciations from an
+    entry with the same written form.  Synset member lists are kept in step, and synsets left with no
+    members and no definition are dropped (the base wordnet has them through
+    the ILI), with the relations pointing to them.
+
+    Returns (removed, lowered, unmatched rows, added); renamed senses that
+    were dropped as duplicates count as removed.
+    """
+    if not tsv.exists():
+        return 0, 0, 0, 0
+    with tsv.open(encoding="utf-8", newline="") as fh:
+        rows = {(r["synset_id"], r["lemma"]): r
+                for r in csv.DictReader(fh, delimiter="\t", quoting=csv.QUOTE_NONE)}
+    removed = lowered = 0
+    seen = set()
+    by_lemma = {(e["lemma"]["writtenForm"], e["lemma"]["partOfSpeech"]): e
+                for e in lex["entries"]}
+    moved = []  # (sense, new lemma, old entry)
+    for entry in lex["entries"]:
+        lemma = entry["lemma"]["writtenForm"]
+        kept = []
+        for sense in entry.get("senses", []):
+            row = rows.get((sense["synset"], lemma))
+            if row is None or row["action"] == "add":
+                kept.append(sense)
+                continue
+            seen.add((sense["synset"], lemma))
+            if row["action"] == "remove":
+                removed += 1
+                continue
+            if row["action"] == "rename":
+                moved.append((sense, row["new_lemma"], entry))
+                continue
+            meta = sense.get("meta") or {}
+            if float(meta.get("confidenceScore", 1.0)) > float(row["confidence"]):
+                meta["confidenceScore"] = float(row["confidence"])
+                sense["meta"] = meta
+                lowered += 1
+            kept.append(sense)
+        entry["senses"] = kept
+    for n, (sense, new, old) in enumerate(moved):
+        pos = old["lemma"]["partOfSpeech"]
+        target = by_lemma.get((new, pos))
+        if target is None:
+            lemma = {**old["lemma"], "writtenForm": new}
+            target = {"id": f"{WN_ID}-wrename{n}", "lemma": lemma, "senses": []}
+            lex["entries"].append(target)
+            by_lemma[(new, pos)] = target
+        if any(se["synset"] == sense["synset"] for se in target["senses"]):
+            removed += 1
+        else:
+            target["senses"].append(sense)
+    added = add_senses(lex, [r for r in rows.values() if r["action"] == "add"], by_lemma)
+    lex["entries"] = [e for e in lex["entries"] if e.get("senses")]
+    live = {s["id"] for e in lex["entries"] for s in e["senses"]}
+    for ss in lex["synsets"]:
+        if ss.get("members"):
+            ss["members"] = [m for m in ss["members"] if m in live]
+    lex["synsets"] = [ss for ss in lex["synsets"] if ss.get("members") or ss.get("definitions")]
+    keep = {ss["id"] for ss in lex["synsets"]}
+    for ss in lex["synsets"]:
+        if ss.get("relations"):
+            ss["relations"] = [r for r in ss["relations"] if r["target"] in keep]
+    unmatched = len({k for k, r in rows.items() if r["action"] != "add"} - seen)
+    return removed, lowered, unmatched, added
+
+
+def add_senses(lex: dict, rows: list[dict], by_lemma: dict) -> int:
+    """Add the senses of ``add`` rows to their synsets; return how many."""
+    synsets = {ss["id"]: ss for ss in lex["synsets"]}
+    prons = {}
+    for e in lex["entries"]:
+        if e["lemma"].get("pronunciations"):
+            prons.setdefault(e["lemma"]["writtenForm"], e["lemma"]["pronunciations"])
+    added = 0
+    for n, r in enumerate(rows):
+        ss = synsets.get(r["synset_id"])
+        if ss is None:
+            continue
+        form = r["lemma"]
+        particle = form.endswith(("+的", "+地"))
+        form = form.replace("+", "")
+        pos = ss["partOfSpeech"]
+        entry = by_lemma.get((form, pos))
+        if entry is None:
+            lemma = {"writtenForm": form, "partOfSpeech": pos}
+            if form in prons:
+                lemma["pronunciations"] = prons[form]
+            entry = {"id": f"{WN_ID}-wadd{n}", "lemma": lemma, "senses": []}
+            lex["entries"].append(entry)
+            by_lemma[(form, pos)] = entry
+        if any(se["synset"] == ss["id"] for se in entry["senses"]):
+            continue
+        sense = {"id": f"{ss['id']}-{entry['id'].removeprefix(WN_ID + '-')}", "synset": ss["id"]}
+        if particle:
+            sense["lexicalized"] = False
+        entry["senses"].append(sense)
+        ss["members"] = ss.get("members", []) + [sense["id"]]
+        added += 1
+    return added
+
+
 def package(xml: Path, outdir: Path, version: str) -> Path:
     """Write the wn package directory and its .tar.xz; return the tarball."""
     pkg = outdir / WN_ID
@@ -82,6 +197,11 @@ def main() -> None:
     parser.add_argument("--version", required=True, help="Release version")
     parser.add_argument("-o", "--outdir", default=str(ROOT / "release"),
                         help="Output directory (default: release/)")
+    parser.add_argument("--cedict", help="CEDICT .gz: add pinyin to new entries before packaging")
+    parser.add_argument("--ntumc", default=str(ROOT.parent / "NTUMC"),
+                        help="NTU-MC checkout with addpinyin.py and its venv (default: ../NTUMC)")
+    parser.add_argument("--corrections", default=str(ROOT / "corrections" / "senses.tsv"),
+                        help="Sense corrections (default: corrections/senses.tsv)")
     args = parser.parse_args()
 
     data = lmf.load(args.xml)
@@ -90,11 +210,21 @@ def main() -> None:
           f"{len(lex['synsets'])} synsets")
     reprefix(lex, lex["id"], WN_ID)
     lex.update(META, id=WN_ID, version=args.version)
+    removed, lowered, unmatched, added = apply_sense_corrections(
+        lex, Path(args.corrections))
+    print(f"  corrections: {removed} senses removed, {lowered} lowered, {added} added, "
+          f"{unmatched} rows matched no sense")
+    print(f"  after: {len(lex['entries'])} entries, {len(lex['synsets'])} synsets")
 
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     xml = outdir / f"{WN_ID}-{args.version}.xml"
     lmf.dump(data, str(xml))
+    if args.cedict:
+        ntumc = Path(args.ntumc)
+        subprocess.run([str(ntumc / ".venv" / "bin" / "python"), str(ntumc / "scripts" / "addpinyin.py"),
+                        args.cedict, str(xml), "--db", str(ntumc / "build" / "wn-ntumc.db")],
+                       check=True)
     tar = package(xml, outdir, args.version)
     print(f"  wrote {xml} and {tar}")
 
