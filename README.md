@@ -47,18 +47,23 @@ and leaves out structure shared with it.
 
 ### Agentive nouns (not yet in a release)
 
-`data/agentive_links.tsv` has 56 links between a verb sense and a noun
+`data/agentive_links.tsv` has 47 links between a verb sense and a noun
 sense formed from it with an agentive suffix, checked by hand by Ryan Lim
 Dao Wei (Bond and Wei 2019), almost all with 器: 放大 → 放大器 *amplifier*
-(instrument).  Only 203 of the 769 Chinese candidates were checked, once;
-one accepted pair with no link type is left out.  As in the Open English
+(instrument).  Only 203 of the 769 Chinese candidates were checked, once.
+Of the 57 accepted pairs, one with no link type is left out, and 9 that a
+blind model review in 2026 judged not linked this way are listed in
+`corrections/agentive-removed.tsv`; the 5 senses of those pairs that two
+blind runs both judged wrong (排水器 as *hydathode*, 过滤器 as *colander*)
+are removed in `corrections/senses.tsv`, and 3 they disagreed on wait in
+`corrections/agentive-senses-review.tsv`.  As in the Open English
 Wordnet, the verb sense gets a `SenseRelation` of type `other` with the link
-type in `dc:type` (44 instrument, 11 uses, 1 by_means_of), and the two senses
-are linked by `derivation` both ways.  `build_cow.py` adds the 50 whose
-senses are in COW (`--links`); `scripts/agentive_links.py` remakes the file
+type in `dc:type`, and the two senses are linked by `derivation` both ways.
+`build_cow.py` adds the 43 whose senses are in COW (34 instrument, 8 uses,
+1 by_means_of; `--links`); `scripts/agentive_links.py` remakes the file
 from the source spreadsheet, which is kept with the
 [Japanese wordnet](https://github.com/bond-lab/wnja) (`data/sources/`),
-where the same method gave 769 links.
+where the same method gave 701 links.
 
 Francis Bond and Ryan Lim Dao Wei (2019). Generating Derivational
 Relations for the Japanese WordNet: The Case of Agentive Nouns. In

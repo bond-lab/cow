@@ -1,7 +1,6 @@
 verb_synset	verb	noun_synset	noun	suffix	rel_type	link_type	check	sn
 cow-00001740-v	呼吸	cow-02895606-n	呼吸器	器	instrument	instrument	yes	5
 cow-00002325-v	呼吸	cow-02895606-n	呼吸器	器	instrument	instrument	yes	13
-cow-00002573-v	呼吸	cow-02895606-n	呼吸器	器	instrument	instrument	yes	14
 cow-00005041-v	吸入	cow-03571280-n	吸入器	器	instrument	instrument	yes	58
 cow-00036362-v	冲洗	cow-03228533-n	冲洗器	器	instrument	instrument	yes	679
 cow-00246217-v	倍增	cow-03227721-n	倍增器	器	instrument	instrument	yes	4856
@@ -9,7 +8,6 @@ cow-00295966-v	调节	cow-03450018-n	调节器	器	instrument	instrument	yes	585
 cow-00331082-v	研磨	cow-03765561-n	研磨器	器	instrument	instrument	yes	6466
 cow-00367241-v	渗析	cow-03187751-n	渗析器	器	instrument	instrument	yes	7386
 cow-00371264-v	加热	cow-03508101-n	加热器	器	instrument	instrument	yes	7500
-cow-00375021-v	汽化	cow-02962200-n	汽化器	器	instrument	instrument	yes	7582
 cow-00376807-v	解冻	cow-03172211-n	解冻器	器	instrument	instrument	yes	7604
 cow-00383542-v	转换	cow-03099945-n	转换器	器	instrument	instrument	yes	7767
 cow-00390215-v	缓冲	cow-02911158-n	缓冲器	器	uses	purpose/function	yes	7928
@@ -18,9 +16,7 @@ cow-00394813-v	混合	cow-03775199-n	混合器	器	instrument	instrument	yes	803
 cow-00397987-v	蒸煮	cow-03195332-n	蒸煮器	器	instrument	instrument	yes	8096
 cow-00398138-v	搅拌	cow-02850732-n	搅拌器	器	instrument	instrument	yes	8098
 cow-00398138-v	搅拌	cow-03775199-n	搅拌器	器	instrument	instrument	yes	8100
-cow-00403967-v	减压	cow-02755675-n	减压器	器	instrument	instrument	yes	8227
 cow-00434077-v	放大	cow-02705944-n	放大器	器	instrument	instrument	yes	8853
-cow-00451648-v	排水	cow-13153729-n	排水器	器	uses	purpose/function	yes	9236
 cow-00736216-v	分析	cow-02708711-n	分析器	器	instrument	instrument	yes	15594
 cow-00789448-v	呼叫	cow-02823124-n	呼叫器	器	instrument	instrument	yes	16822
 cow-00872414-v	警报	cow-03536761-n	警报器	器	uses	purpose/function	yes	18689
@@ -29,7 +25,6 @@ cow-00923793-v	指示	cow-03211117-n	指示器	器	uses	purpose/function	yes	198
 cow-00923793-v	指示	cow-03568117-n	指示器	器	uses	purpose/function	yes	19878
 cow-00948071-v	计数	cow-03116767-n	计数器	器	instrument	instrument	yes	20473
 cow-00948071-v	计数	cow-03117420-n	计数器	器	instrument	instrument	yes	20477
-cow-01129337-v	监视	cow-03781787-n	监视器	器	instrument	instrument	yes	24937
 cow-01151110-v	瞄准	cow-03470387-n	瞄准器	器	instrument	instrument	yes	25586
 cow-01224744-v	控制	cow-03096960-n	控制器	器	uses	purpose/function	yes	27384
 cow-01245637-v	磨光	cow-02911332-n	磨光器	器	instrument	instrument	yes	27875
@@ -44,12 +39,8 @@ cow-01953810-v	搬运	cow-02969886-n	搬运器	器	instrument	instrument	yes	460
 cow-01953810-v	搬运	cow-02970100-n	搬运器	器	instrument	instrument	yes	46082
 cow-01953810-v	运送	cow-03100897-n	运送器	器	instrument	instrument	yes	46087
 cow-01979702-v	着陆	cow-03638180-n	着陆器	器	uses	purpose/function	yes	46698
-cow-02032117-v	抽出	cow-03308152-n	抽出器	器	instrument	instrument	yes	47752
-cow-02071837-v	过滤	cow-03066849-n	过滤器	器	instrument	instrument	yes	48850
-cow-02071837-v	过滤	cow-03339643-n	过滤器	器	instrument	instrument	yes	48851
 cow-02154508-v	探测	cow-03181293-n	探测器	器	instrument	instrument	yes	50761
 cow-02189714-v	窃听	cow-02912440-n	窃听器	器	uses	purpose/function	yes	51623
-cow-02221635-v	转让	cow-06545528-n	转让器	器	uses	purpose/function	yes	52238
 cow-02553002-v	去纤颤	cow-03171635-n	去纤颤器	器	instrument	instrument	yes	60563
 cow-02759614-v	点火	cow-03407122-n	点火器	器	instrument	instrument	yes	65566
 cow-02759614-v	点火	cow-03666591-n	点火器	器	instrument	instrument	yes	65574

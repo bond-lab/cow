@@ -10,7 +10,9 @@ checked twice; the Chinese ones once, and only 203 of 769, almost all with
 Japanese wordnet's repository, in wnja/data/sources/.
 
 A pair is used if the check (column ``link``) accepted it and gave it a link
-type.  Writes data/agentive_links.tsv, which build_cow.py applies as OEWN
+type, unless it is listed (by S/N) in corrections/agentive-removed.tsv,
+where a later review judged that the two senses are not linked this way.
+Writes data/agentive_links.tsv, which build_cow.py applies as OEWN
 does: the verb sense gets relType ``other`` with the type in dc:type, and the
 two senses get ``derivation`` both ways.
 
@@ -26,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "agentive_links.tsv"
+REMOVED = ROOT / "corrections" / "agentive-removed.tsv"
 
 #: the report's link types -> the dc:type of OEWN's ``other`` sense relations
 REL_TYPES = {
@@ -64,7 +67,12 @@ def main() -> None:
     rows = sheet.iter_rows(values_only=True)
     head = next(rows)
     rows = [dict(zip(head, r)) for r in rows]
-    out = sorted((x for r in rows if (x := link(r))), key=lambda x: x[:4])
+    removed = set()
+    if REMOVED.exists():
+        with REMOVED.open(encoding="utf-8", newline="") as f:
+            removed = {r["sn"] for r in csv.DictReader(f, delimiter="\t")}
+    out = sorted((x for r in rows if (x := link(r)) and str(x[-1]) not in removed),
+                 key=lambda x: x[:4])
     untyped = sum(1 for r in rows if r.get("lang") == "cmn" and r.get("link") == "yes"
                   and r.get("link type") not in REL_TYPES)
     with OUT.open("w", encoding="utf-8", newline="") as f:
@@ -72,7 +80,7 @@ def main() -> None:
         w.writerow(HEAD)
         w.writerows(out)
     print(f"{len(out)} links -> {OUT} {dict(Counter(x[5] for x in out))}; "
-          f"{untyped} accepted without a type left out")
+          f"{untyped} accepted without a type and {len(removed)} removed by review left out")
 
 
 if __name__ == "__main__":

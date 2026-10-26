@@ -1,0 +1,4 @@
+synset_id	lemma	english	run1	reason1	run2	reason2
+cow-00002573-v	呼吸	respire	WRONG	breathe, not recover breath after exertion	OK	Breathe
+cow-00375021-v	汽化	boil	OK	vaporize	WRONG	Vaporization, not boiling
+cow-02221635-v	转让	pass	OK	transfer rights	WRONG	Transfer of property, not pass
