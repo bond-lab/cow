@@ -67,7 +67,7 @@ where the same method gave 701 links.
 
 Francis Bond and Ryan Lim Dao Wei (2019). Generating Derivational
 Relations for the Japanese WordNet: The Case of Agentive Nouns. In
-*2019 International Conference on Asian Language Processing (IALP)*.
+*2019 Pacific Neighborhood Consortium Annual Conference and Joint Meetings (PNC)*, pp. 1–7.
 <https://ieeexplore.ieee.org/abstract/document/8939615>
 
 ## Using it with `wn`
