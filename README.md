@@ -49,7 +49,7 @@ and leaves out structure shared with it.
 
 `data/agentive_links.tsv` has 47 links between a verb sense and a noun
 sense formed from it with an agentive suffix, checked by hand by Ryan Lim
-Dao Wei (Bond and Wei 2019), almost all with 器: 放大 → 放大器 *amplifier*
+Dao Wei (Bond and Lim 2019), almost all with 器: 放大 → 放大器 *amplifier*
 (instrument).  Only 203 of the 769 Chinese candidates were checked, once.
 Of the 57 accepted pairs, one with no link type is left out, and 9 that a
 blind model review in 2026 judged not linked this way are listed in
@@ -124,4 +124,4 @@ the sense-tagged corpora COW was extended from (Bond et al. 2013;
 Wang and Bond 2014; Bond and Wang 2014), numeral classifiers (Mok et
 al. 2012; Morgado da Costa et al. 2016), pronouns (Seah and Bond 2014),
 exclamatives (Morgado da Costa and Bond 2016) and agentive nouns
-(Bond and Wei 2019).
+(Bond and Lim 2019).

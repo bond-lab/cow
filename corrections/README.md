@@ -74,7 +74,7 @@ digits or letters (４月 → 4月, 卡拉ＯＫ → 卡拉OK).
 ### 2026-10-26: agentive noun links
 
 A blind Claude Sonnet review of the 57 accepted Chinese pairs of Bond and
-Wei (2019) judged 9 not linked as agentive nouns; they are listed by S/N in
+Lim (2019) judged 9 not linked as agentive nouns; they are listed by S/N in
 `agentive-removed.tsv`, which `scripts/agentive_links.py` leaves out (delete
 a row to restore a pair).  Two blind Sonnet runs then judged the senses of
 those pairs: 5 that both judged wrong are `remove` rows (source `agentive
