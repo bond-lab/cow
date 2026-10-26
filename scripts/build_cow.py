@@ -12,7 +12,8 @@ segmented variants (cmn:mwe):
     .venv/bin/python scripts/addpinyin.py CEDICT OUT/wn-ntumc-cmn.xml --db ...
 
 This re-ids the lexicon from ntumc-cmn to cow, sets the COW metadata,
-applies the sense corrections in corrections/senses.tsv, adds pinyin to new
+applies the sense corrections in corrections/senses.tsv, adds the agentive
+noun links in data/agentive_links.tsv, adds pinyin to new
 entries with NTU-MC's addpinyin.py (with --cedict) and writes a wn package (cow/cow-VERSION.xml with README, LICENSE and
 citation.bib) and its .tar.xz.
 
@@ -176,6 +177,46 @@ def add_senses(lex: dict, rows: list[dict], by_lemma: dict) -> int:
     return added
 
 
+def add_sense_links(lex: dict, tsv: Path) -> tuple[int, int]:
+    """Add the agentive noun links of data/agentive_links.tsv.
+
+    Each row names a verb sense and a noun sense by synset and lemma.  As in
+    OEWN, the verb sense gets ``other`` with the link type in dc:type
+    (instrument, uses, ...) to the noun sense, and the two get
+    ``derivation`` both ways; links already there are not repeated.  Rows
+    whose senses are not in the lexicon (e.g. removed by the corrections)
+    are skipped.  Returns (typed links added, rows skipped).
+    """
+    if not tsv.exists():
+        return 0, 0
+    senses = {(s["synset"], e["lemma"]["writtenForm"]): s
+              for e in lex["entries"] for s in e.get("senses", [])}
+
+    def add(sense: dict, target: str, rel_type: str, kind: str = "") -> int:
+        rels = sense.setdefault("relations", [])
+        if any((r["target"], r["relType"], (r.get("meta") or {}).get("type", ""))
+               == (target, rel_type, kind) for r in rels):
+            return 0
+        rel = {"target": target, "relType": rel_type}
+        if kind:
+            rel["meta"] = {"type": kind}
+        rels.append(rel)
+        return 1
+
+    added = skipped = 0
+    with tsv.open(encoding="utf-8", newline="") as fh:
+        for r in csv.DictReader(fh, delimiter="\t", quoting=csv.QUOTE_NONE):
+            verb = senses.get((r["verb_synset"], r["verb"]))
+            noun = senses.get((r["noun_synset"], r["noun"]))
+            if verb is None or noun is None:
+                skipped += 1
+                continue
+            added += add(verb, noun["id"], "other", r["rel_type"])
+            add(verb, noun["id"], "derivation")
+            add(noun, verb["id"], "derivation")
+    return added, skipped
+
+
 def package(xml: Path, outdir: Path, version: str) -> Path:
     """Write the wn package directory and its .tar.xz; return the tarball."""
     pkg = outdir / WN_ID
@@ -203,6 +244,8 @@ def main() -> None:
                         help="NTU-MC checkout with addpinyin.py and its venv (default: ../NTUMC)")
     parser.add_argument("--corrections", default=str(ROOT / "corrections" / "senses.tsv"),
                         help="Sense corrections (default: corrections/senses.tsv)")
+    parser.add_argument("--links", default=str(ROOT / "data" / "agentive_links.tsv"),
+                        help="Typed sense links (default: data/agentive_links.tsv)")
     args = parser.parse_args()
 
     data = lmf.load(args.xml)
@@ -215,6 +258,8 @@ def main() -> None:
         lex, Path(args.corrections))
     print(f"  corrections: {removed} senses removed, {lowered} lowered, {added} added, "
           f"{unmatched} rows matched no sense")
+    links, skipped = add_sense_links(lex, Path(args.links))
+    print(f"  agentive links: {links} added, {skipped} rows matched no sense")
     print(f"  after: {len(lex['entries'])} entries, {len(lex['synsets'])} synsets")
 
     outdir = Path(args.outdir)

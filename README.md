@@ -45,6 +45,26 @@ The wordnet is in WN-LMF 1.4 format and extends the English
 `omw-en:2.0` wordnet: it declares `<Requires ref="omw-en" version="2.0"/>`
 and leaves out structure shared with it.
 
+### Agentive nouns (not yet in a release)
+
+`data/agentive_links.tsv` has 56 links between a verb sense and a noun
+sense formed from it with an agentive suffix, checked by hand by Ryan Lim
+Dao Wei (Bond and Wei 2019), almost all with 器: 放大 → 放大器 *amplifier*
+(instrument).  Only 203 of the 769 Chinese candidates were checked, once;
+one accepted pair with no link type is left out.  As in the Open English
+Wordnet, the verb sense gets a `SenseRelation` of type `other` with the link
+type in `dc:type` (44 instrument, 11 uses, 1 by_means_of), and the two senses
+are linked by `derivation` both ways.  `build_cow.py` adds the 50 whose
+senses are in COW (`--links`); `scripts/agentive_links.py` remakes the file
+from the source spreadsheet, which is kept with the
+[Japanese wordnet](https://github.com/bond-lab/wnja) (`data/sources/`),
+where the same method gave 769 links.
+
+Francis Bond and Ryan Lim Dao Wei (2019). Generating Derivational
+Relations for the Japanese WordNet: The Case of Agentive Nouns. In
+*2019 International Conference on Asian Language Processing (IALP)*.
+<https://ieeexplore.ieee.org/abstract/document/8939615>
+
 ## Using it with `wn`
 
 ```python

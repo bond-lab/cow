@@ -106,3 +106,27 @@ def test_add_particle_lemma_with_copied_pinyin(tmp_path: Path) -> None:
     assert new["lemma"]["pronunciations"] == [{"text": "ming2 liang4 de5"}]
     assert new["senses"][0]["lexicalized"] is False
     assert new["senses"][0]["id"] in lex["synsets"][1]["members"]
+
+
+def test_add_sense_links_typed_and_derivation(tmp_path: Path) -> None:
+    # Arrange
+    from build_cow import add_sense_links
+    lex = {"entries": [
+        {"id": "e1", "lemma": {"writtenForm": "放大", "partOfSpeech": "v"},
+         "senses": [{"id": "v1", "synset": "cow-1-v"}]},
+        {"id": "e2", "lemma": {"writtenForm": "放大器", "partOfSpeech": "n"},
+         "senses": [{"id": "n1", "synset": "cow-2-n"}]}]}
+    tsv = tmp_path / "links.tsv"
+    tsv.write_text("verb_synset\tverb\tnoun_synset\tnoun\trel_type\n"
+                   "cow-1-v\t放大\tcow-2-n\t放大器\tinstrument\n"
+                   "cow-1-v\t放大\tcow-2-n\t放大器\tinstrument\n"
+                   "cow-1-v\t放大\tcow-3-n\t缩小器\tinstrument\n", encoding="utf-8")
+    # Act
+    added, skipped = add_sense_links(lex, tsv)
+    # Assert
+    verb, noun = lex["entries"][0]["senses"][0], lex["entries"][1]["senses"][0]
+    assert (added, skipped) == (1, 1)
+    assert verb["relations"] == [
+        {"target": "n1", "relType": "other", "meta": {"type": "instrument"}},
+        {"target": "n1", "relType": "derivation"}]
+    assert noun["relations"] == [{"target": "v1", "relType": "derivation"}]
