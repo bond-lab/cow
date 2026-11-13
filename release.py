@@ -7,7 +7,9 @@ The base is the released cow-BASE_VERSION.xml, downloaded once to
 build/base/ and checked against its checksum.  The changes are
 changes/cow-BASE_VERSION.jsonl (see changes/README.md).  A change that
 does not fit the base is a conflict: they are listed, and nothing is
-written until they are settled.
+written until they are settled.  Synsets left with no sense and nothing
+of their own (definition, example) are then dropped: omw-en has the
+concept through the ILI.
 
 Writes release/cow-VERSION.xml and the wn package release/cow-VERSION.tar.xz
 (the XML with README, LICENSE and citation.bib).  Entries that are not in
@@ -98,6 +100,8 @@ def release(version: str, out: Path) -> list[str]:
     items, conflicts = changes.apply(base, changes.read(CHANGES))
     if conflicts:
         return conflicts
+    items, dropped = changes.drop_empty_synsets(items)
+    log.info("Dropped %d synsets with no sense and nothing of their own", len(dropped))
     for lemma in without_pinyin(items, known):
         log.warning("%s is new and has no pinyin: run NTU-MC's addpinyin.py", lemma)
     next(i for i in items if isinstance(i, Lexicon)).version = version

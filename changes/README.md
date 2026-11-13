@@ -31,9 +31,11 @@ earlier line: to undo a change, add the opposite one.
 * `id` is unique; `user`, `source` (the evidence: a person, a
   dictionary, a corpus) and `reason` are required.
 * A model alone is not a source for an addition.
-* A synset whose last sense is removed stays unless a `remove_synset`
-  record drops it.  The old build dropped such a synset when it had no
-  definition, since omw-en has the concept through the ILI.
+* A synset left with no sense and nothing of its own (definition,
+  example) is dropped by `release.py`, as the old build did: omw-en has
+  the concept through the ILI.  No record is needed.  (The one
+  `remove_synset` record in the first log was written before this rule
+  was put back; it is harmless.)
 * A new entry has no pinyin: `release.py` lists new entries without it,
   to be filled by NTU-MC's `addpinyin.py`.
 * `reject_sense_relation` records a decision that two senses are not
