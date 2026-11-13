@@ -59,8 +59,9 @@ are removed in `corrections/senses.tsv`, and 3 they disagreed on wait in
 `corrections/agentive-senses-review.tsv`.  As in the Open English
 Wordnet, the verb sense gets a `SenseRelation` of type `other` with the link
 type in `dc:type`, and the two senses are linked by `derivation` both ways.
-`build_cow.py` adds the 43 whose senses are in COW (34 instrument, 8 uses,
-1 by_means_of; `--links`); `scripts/agentive_links.py` remakes the file
+The 43 whose senses are in COW (34 instrument, 8 uses, 1 by_means_of) are
+in the change log, and the 9 rejected pairs are recorded there as
+rejected; `scripts/agentive_links.py` remakes the file
 from the source spreadsheet, which is kept with the
 [Japanese wordnet](https://github.com/bond-lab/wnja) (`data/sources/`),
 where the same method gave 701 links.
@@ -82,7 +83,18 @@ cow.words("狗")
 
 ## Building
 
-COW is built from the curated Chinese export of the NTU-MC database.  The
+From 1.1 on, a release is the last release plus the change records in
+`changes/` (see `changes/README.md`):
+
+    ../NTUMC/.venv/bin/python release.py 1.2
+
+`release.py` fetches `cow-1.1.tar.xz` from the GitHub release, checks its
+checksum, applies `changes/cow-1.1.jsonl` and writes `release/cow-1.2.xml`
+and `release/cow-1.2.tar.xz`.  It needs an NTU-MC checkout next to this
+one, for `ntumc.wordnet`.
+
+Up to 1.1, COW was built from the curated Chinese export of the NTU-MC
+database; that build and `corrections/` are kept for the record.  The
 export used for 1.1 is `wn-ntumc-cmn.xml.xz` in the NTU-MC release
 [wn-2026.10](https://github.com/bond-lab/NTUMC/releases/tag/wn-2026.10)
 (checksums in its `SHA256SUMS`):

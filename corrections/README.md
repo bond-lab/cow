@@ -1,5 +1,11 @@
 # COW corrections
 
+**Frozen on 2026-11-13.**  From COW 1.1 on, changes are records in
+`changes/` applied to the last release by `release.py`; nothing here is
+read for a release any more.  These files are how 1.1 and the first
+change log were made.  `agentive-senses-review.tsv` (3 senses two runs
+disagreed on) still waits for a person.
+
 Corrections to the Chinese export of the NTU-MC wordnet, applied by
 `scripts/build_cow.py` when it builds a release.  The export is a build
 artefact, so fixes are kept here as data: auditable, reviewable as diffs and
