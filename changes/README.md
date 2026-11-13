@@ -62,8 +62,8 @@ in a release and so made no change.
 COW leaves out senses that come only from automatic sources (BOW, SEW,
 Wiktionary) and the segmented variants.  The NTU-MC Chinese corpus has
 29,997 concepts tagged with 7,924 such senses: a tagger chose each one.
-They are added (`scripts/add_back_corpus.py`) with the confidence the
-NTU-MC wordnet gives them, after 5,167 `add_synset` records for synsets
+They are added (`scripts/add_back_corpus.py`) at full confidence
+(ruled by fcbond: a sense used in a tag is confirmed), after 5,167 `add_synset` records for synsets
 COW did not have (ILI only, no relations: omw-en has the concept).
 3,721 new entries get their pinyin from CC-CEDICT (`set_pronunciation`);
 13 with several readings, or none, have no pinyin yet.

@@ -3,8 +3,8 @@
 
 The release leaves out senses that come only from automatic sources.
 Where the NTU-MC corpus has concepts tagged with such a sense, a tagger
-chose it, so it is added here as an ``add_sense`` record, with the
-confidence the NTU-MC wordnet gives it.  A synset the lexicon does not
+chose it, so it is added here as an ``add_sense`` record, at full
+confidence whatever the NTU-MC wordnet gave its source.  A synset the lexicon does not
 have yet is added first, with its ILI and no relations: omw-en has the
 concept.  Senses that a review removed are not added (they are in
 NTU-MC docs/quality-sample/removed-but-tagged/ for a ruling).
@@ -50,7 +50,6 @@ def main() -> None:
                     source="NTU-MC wordnet database, frozen 2026-11-13",
                     reason="for a sense the corpus is tagged with")
             add("add_sense", synset=row["synset"], lemma=row["lemma"], pos=row["pos"],
-                new=row["confidence"] or None,
                 source=f"NTU-MC corpus: {row['corpus']} concepts tagged with it",
                 reason=f"left out of the release for its source ({row['src']}); "
                        "a tagger chose it")
