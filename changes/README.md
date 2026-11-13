@@ -56,3 +56,18 @@ source, reason and date of its row in `corrections/`.
 They are followed by 9 `reject_sense_relation` records: the pairs a
 review rejected (`corrections/agentive-removed.tsv`), which were never
 in a release and so made no change.
+
+## Senses the corpus uses (2026-11-13)
+
+COW leaves out senses that come only from automatic sources (BOW, SEW,
+Wiktionary) and the segmented variants.  The NTU-MC Chinese corpus has
+29,997 concepts tagged with 7,924 such senses: a tagger chose each one.
+They are added (`scripts/add_back_corpus.py`) with the confidence the
+NTU-MC wordnet gives them, after 5,167 `add_synset` records for synsets
+COW did not have (ILI only, no relations: omw-en has the concept).
+3,721 new entries get their pinyin from CC-CEDICT (`set_pronunciation`);
+13 with several readings, or none, have no pinyin yet.
+
+The 408 corpus-tagged senses that the review removed are not added:
+they wait for a ruling in NTU-MC
+`docs/quality-sample/removed-but-tagged/cmn.tsv`.
