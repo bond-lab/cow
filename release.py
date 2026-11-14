@@ -39,7 +39,6 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "NTUMC"))
 
 from ntumc.wordnet import changes, lmf, shared  # noqa: E402
-from ntumc.wordnet.diff import facts  # noqa: E402
 from ntumc.wordnet.model import Entry, Item, Lexicon  # noqa: E402
 
 WN_ID = "cow"
@@ -94,20 +93,6 @@ def without_pinyin(items: list[Item], known: set[tuple[str, str]]) -> list[str]:
             and (str(e.lemma), str(e.pos)) not in known]
 
 
-def read_shared(path: Path = SHARED) -> list[Item]:
-    """The shared-concepts lexicon omw-ntumc, checked against its checksum.
-
-    Raises:
-        ValueError: if the file is missing or is not the pinned version.
-    """
-    if not path.exists():
-        raise ValueError(f"{path} is missing: in omw-ntumc, check out "
-                         f"v{SHARED_VERSION} and run build.py {SHARED_VERSION}")
-    if hashlib.sha256(path.read_bytes()).hexdigest() != SHARED_SHA256:
-        raise ValueError(f"{path} is not omw-ntumc {SHARED_VERSION}")
-    return list(lmf.read(path))
-
-
 def release(version: str, out: Path) -> list[str]:
     """Apply the change records to the base; write the minimal lexicon and the export.
 
@@ -135,22 +120,7 @@ def release(version: str, out: Path) -> list[str]:
         log.warning("%s is new and has no pinyin: run NTU-MC's addpinyin.py", lemma)
     next(i for i in items if isinstance(i, Lexicon)).version = version
     out.parent.mkdir(parents=True, exist_ok=True)
-    concepts = read_shared()
-    before = facts(items)
-    items, moved = shared.minimal(items, concepts)
-    log.info("Minimal: %d definitions and %d relations of %d concepts left to omw-ntumc",
-             moved["definitions"], moved["relations"], moved["concepts"])
-    lmf.write(out.with_name(f"{WN_ID}-min-{version}.xml"), items)
-    items, added = shared.export(items, concepts)
-    lost = before - facts(items)
-    if lost:
-        raise ValueError(f"the export lacks {sum(lost.values())} facts, such as "
-                         f"{next(iter(lost))}")
-    log.info("Export: %d definitions and %d relations put back, of which %d and %d are new",
-             added["definitions"], added["relations"],
-             added["definitions"] - moved["definitions"],
-             added["relations"] - moved["relations"])
-    lmf.write(out, items)
+    shared.write_release(items, shared.load(SHARED, SHARED_SHA256), out)
     return []
 
 
