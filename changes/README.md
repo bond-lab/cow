@@ -7,9 +7,25 @@ From COW 1.1 on, the master copy of COW is
 * `cow-1.1.jsonl`: every change made since, one per line, in order.
 
 `../NTUMC/.venv/bin/python release.py 1.2` applies the changes to the
-base and writes `release/cow-1.2.xml` and its package.  After a release,
-the new XML is the base and a new, empty `cow-1.2.jsonl` is started; the
-old file stays as the history.
+base and writes two lexicons:
+
+* `release/cow-min-1.2.xml` (id `cow-min`), the minimal lexicon: what COW
+  itself says.  For a concept CILI does not have yet it holds the words
+  and the concept's identifier (`dc:identifier="ntumc00001"`); the
+  English definition and the relations are in the shared lexicon
+  `omw-ntumc`.
+* `release/cow-1.2.xml` (id `cow`) and its package, the export: the
+  minimal lexicon with what `omw-ntumc` says put back, for users who
+  want one file.
+
+`release.py` fails if the export lacks anything COW said before it was
+split.  `omw-ntumc` is read from a checkout beside this one, built at
+the version `release.py` pins (`uv run build.py 0.1` at tag `v0.1`).
+
+After a release, the minimal XML is the base and a new, empty
+`cow-1.2.jsonl` is started; the old file stays as the history.  From
+then on `release.py` no longer has to take anything out: it applies the
+changes to the minimal lexicon and exports it.
 
 Nothing is rebuilt from the NTU-MC export any more: `scripts/build_cow.py`
 and `corrections/` are how 1.1 and the first change log were made, and

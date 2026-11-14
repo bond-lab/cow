@@ -11,8 +11,14 @@ written until they are settled.  Synsets left with no sense and nothing
 of their own (definition, example) are then dropped: omw-en has the
 concept through the ILI.
 
-Writes release/cow-VERSION.xml and the wn package release/cow-VERSION.tar.xz
-(the XML with README, LICENSE and citation.bib).  Entries that are not in
+Two lexicons are written.  release/cow-min-VERSION.xml is the minimal
+one (id cow-min), the master: for a concept CILI does not have yet it
+holds the words and the concept's identifier, and leaves the English
+definition and the relations to the shared lexicon omw-ntumc.
+release/cow-VERSION.xml is the export (id cow), with those put back; it
+is what goes in the wn package release/cow-VERSION.tar.xz (the XML with
+README, LICENSE and citation.bib).  omw-ntumc is read from a checkout
+beside this one, built at its tag (uv run build.py SHARED_VERSION).  Entries that are not in
 the base and have no pinyin are listed: an entry made by add_sense has
 none until NTU-MC's addpinyin.py is run on the XML.
 
@@ -32,7 +38,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "NTUMC"))
 
-from ntumc.wordnet import changes, lmf  # noqa: E402
+from ntumc.wordnet import changes, lmf, shared  # noqa: E402
+from ntumc.wordnet.diff import facts  # noqa: E402
 from ntumc.wordnet.model import Entry, Item, Lexicon  # noqa: E402
 
 WN_ID = "cow"
@@ -43,6 +50,9 @@ BASE_XZ_SHA256 = "93e9357dda50a38ce626904c2229479afa177df74d9c504aebfeba06ff2f24
 BASE_XML_SHA256 = "c07e0c1e9870e344674df76d3dd50eb912c829301795c2141fa5d563d32ef13f"
 BASE = ROOT / "build" / "base" / f"cow-{BASE_VERSION}.xml"
 CHANGES = ROOT / "changes" / f"cow-{BASE_VERSION}.jsonl"
+SHARED_VERSION = "0.1"
+SHARED = ROOT.parent / "omw-ntumc" / "build" / f"omw-ntumc-{SHARED_VERSION}.xml"
+SHARED_SHA256 = "6ee5f6a254907d4fbdaa0e4238dddf0c3012ee92ef27fdd7d79815c46ff7c3f0"
 
 log = logging.getLogger("release")
 
@@ -84,15 +94,34 @@ def without_pinyin(items: list[Item], known: set[tuple[str, str]]) -> list[str]:
             and (str(e.lemma), str(e.pos)) not in known]
 
 
+def read_shared(path: Path = SHARED) -> list[Item]:
+    """The shared-concepts lexicon omw-ntumc, checked against its checksum.
+
+    Raises:
+        ValueError: if the file is missing or is not the pinned version.
+    """
+    if not path.exists():
+        raise ValueError(f"{path} is missing: in omw-ntumc, check out "
+                         f"v{SHARED_VERSION} and run build.py {SHARED_VERSION}")
+    if hashlib.sha256(path.read_bytes()).hexdigest() != SHARED_SHA256:
+        raise ValueError(f"{path} is not omw-ntumc {SHARED_VERSION}")
+    return list(lmf.read(path))
+
+
 def release(version: str, out: Path) -> list[str]:
-    """Apply the change records to the base and write the new release.
+    """Apply the change records to the base; write the minimal lexicon and the export.
 
     Args:
         version: the version of the new release
-        out: the XML file to write; not written if there are conflicts
+        out: the export's XML file; the minimal lexicon goes beside it.
+            Neither is written if there are conflicts
 
     Returns:
         The conflicts, one line each.
+
+    Raises:
+        ValueError: if the export lacks something the lexicon said before
+            it was split.
     """
     fetch_base()
     base = list(lmf.read(BASE))
@@ -106,6 +135,21 @@ def release(version: str, out: Path) -> list[str]:
         log.warning("%s is new and has no pinyin: run NTU-MC's addpinyin.py", lemma)
     next(i for i in items if isinstance(i, Lexicon)).version = version
     out.parent.mkdir(parents=True, exist_ok=True)
+    concepts = read_shared()
+    before = facts(items)
+    items, moved = shared.minimal(items, concepts)
+    log.info("Minimal: %d definitions and %d relations of %d concepts left to omw-ntumc",
+             moved["definitions"], moved["relations"], moved["concepts"])
+    lmf.write(out.with_name(f"{WN_ID}-min-{version}.xml"), items)
+    items, added = shared.export(items, concepts)
+    lost = before - facts(items)
+    if lost:
+        raise ValueError(f"the export lacks {sum(lost.values())} facts, such as "
+                         f"{next(iter(lost))}")
+    log.info("Export: %d definitions and %d relations put back, of which %d and %d are new",
+             added["definitions"], added["relations"],
+             added["definitions"] - moved["definitions"],
+             added["relations"] - moved["relations"])
     lmf.write(out, items)
     return []
 
@@ -147,7 +191,7 @@ def main() -> None:
         for line in conflicts:
             log.error(line)
         sys.exit(1)
-    log.info("Wrote %s and %s", out, package(out, args.version))
+    log.info("Wrote %s, its minimal lexicon and %s", out, package(out, args.version))
 
 
 if __name__ == "__main__":

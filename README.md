@@ -89,9 +89,11 @@ From 1.1 on, a release is the last release plus the change records in
     ../NTUMC/.venv/bin/python release.py 1.2
 
 `release.py` fetches `cow-1.1.tar.xz` from the GitHub release, checks its
-checksum, applies `changes/cow-1.1.jsonl` and writes `release/cow-1.2.xml`
-and `release/cow-1.2.tar.xz`.  It needs an NTU-MC checkout next to this
-one, for `ntumc.wordnet`.
+checksum, applies `changes/cow-1.1.jsonl` and writes the minimal lexicon
+`release/cow-min-1.2.xml` and the export `release/cow-1.2.xml` with its
+package `release/cow-1.2.tar.xz`.  It needs an NTU-MC checkout next to
+this one, for `ntumc.wordnet`, and an omw-ntumc checkout with the
+shared-concepts lexicon built.
 
 Up to 1.1, COW was built from the curated Chinese export of the NTU-MC
 database; that build and `corrections/` are kept for the record.  The
