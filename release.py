@@ -38,7 +38,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "NTUMC"))
 
-from ntumc.wordnet import changes, lmf, shared  # noqa: E402
+from ntumc.wordnet import changes, lmf, shared, validate  # noqa: E402
 from ntumc.wordnet.model import Entry, Item, Lexicon  # noqa: E402
 
 WN_ID = "cow"
@@ -115,8 +115,6 @@ def release(version: str, out: Path) -> list[str]:
     if conflicts:
         return conflicts
     items, dropped = changes.drop_empty_synsets(items)
-    if changes.shared_ilis(items):
-        return changes.shared_ilis(items)
     log.info("Dropped %d synsets with no sense and nothing of their own", len(dropped))
     for lemma in without_pinyin(items, known):
         log.warning("%s is new and has no pinyin: run NTU-MC's addpinyin.py", lemma)
@@ -162,6 +160,9 @@ def main() -> None:
     if conflicts:
         for line in conflicts:
             log.error(line)
+        sys.exit(1)
+    small = out.with_name(f"{WN_ID}{shared.SUFFIX}-{args.version}.xml")
+    if not all([validate.check(small), validate.check(out)]):
         sys.exit(1)
     log.info("Wrote %s, its minimal lexicon and %s", out, package(out, args.version))
 

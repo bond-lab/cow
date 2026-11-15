@@ -60,6 +60,11 @@ earlier line: to undo a change, add the opposite one.
 The actions and the fields each needs are in NTU-MC
 `docs/wordnet-model.md`.
 
+`release.py` runs the validation of the `wn` module on both files
+(NTU-MC `ntumc.wordnet.validate`).  An error stops the release, and so
+do an ILI on two synsets (`W302`), a word twice in a synset (`W202`)
+and two entries for one word in a synset (`W203`).
+
 ## The first log
 
 `cow-1.1.jsonl` starts with the 135 changes between the 1.1 release and
@@ -110,3 +115,8 @@ beginning 77) are not linked here: they belong to omw-pronoun.
 
 The pronoun synsets carry omw-pronoun's identifiers instead
 (`dc:identifier="pronoun:1;Sg"`), from its table of NTU-MC synsets.
+
+## One entry for a word in a synset (2026-11-15)
+
+1.1 has two entries for 冷淡的 (r), both in `cow-00421978-r`.  A
+`remove_sense` record takes the second (`cow-w66121`) away.
