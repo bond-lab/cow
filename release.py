@@ -115,6 +115,8 @@ def release(version: str, out: Path) -> list[str]:
     if conflicts:
         return conflicts
     items, dropped = changes.drop_empty_synsets(items)
+    if changes.shared_ilis(items):
+        return changes.shared_ilis(items)
     log.info("Dropped %d synsets with no sense and nothing of their own", len(dropped))
     for lemma in without_pinyin(items, known):
         log.warning("%s is new and has no pinyin: run NTU-MC's addpinyin.py", lemma)
